@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: StateManagement(),
     ),
@@ -17,13 +18,23 @@ class StateManagement extends StatefulWidget {
 }
 
 class _StateManagementState extends State<StateManagement> {
+  String title = 'Homepage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello'),
+        title: Text(title),
       ),
-      body: const Text('okay'),
+      body: GestureDetector(
+        onTap: () {
+          setState(() {
+            title = DateTime.now().toIso8601String();
+          });
+        },
+        child: Container(
+          color: Colors.grey,
+        ),
+      ),
     );
   }
 }
